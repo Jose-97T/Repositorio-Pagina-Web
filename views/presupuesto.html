@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>De Todo Un Poco</title>
+    <link rel="stylesheet" href="./../css/estilos.css">
+</head>
+
+<!--Cuerpo de la Web-->
+<body>
+    
+    <!--Header-->
+    <header>
+        <h1>De Todo Un Poco</h1>
+        <nav>
+            <a href="./../index.html">Inicio</a>
+            <a href="#">Presupuestos</a>
+            <a href="./galeria.html">Galerias</a>
+            <a href="./contacto.html">Contacto</a>
+        </nav>
+    </header>
+    
+
+    <!--Main-->
+    <main class="mainFormu">
+        <!--Formulario 1: datos del contacto-->
+        <h3>Datos de contacto</h3>
+        <form name="formu1" class="formu1" method="post" id="miFormulario">
+            
+            <div class="datos">
+            <!--Nombre-->
+            <label for="name">Nombre</label>
+            <input type="text" id="name" name="name" placeholder="Escribe tu nombre" pattern="[A-Z a-z]{3,15}" required>
+
+            <!--Apellidos-->
+            <label for="surname">Apellidos</label>
+            <input type="text" id="surname" name="surname" placeholder="Escribe tus apellidos" pattern="[A-Z a-z]{3,40}" required>
+
+            <!--Email-->
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Escribe tu correo" pattern="[A-Za-z0-40-_.,]+@[a-z0-40.-_,]+.[a-z]{2,5}" required>
+
+            <!--Telefono-->
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="telefono" name="telefono" placeholder="Escribe tu telefono" pattern="[0-9]{9}" required>
+            </div>
+
+            <!--Checkbox-->
+            <div class="checkB">
+                <label for="check">Politica de privacidad</label>
+                <input type="checkbox" id="check" name="check" required>
+            </div>
+
+            <!--Submit-->
+            <div class="envio">
+                <button type="button" id="enviar" name="enviar" onclick="validarFormulario()" value="Enviar">Enviar</button>
+            </div>
+            
+        </form>
+
+        <!--Formulario 2: presupuesto-->
+        <h3>A continuacion calcularemos un presupuesto</h3>
+        <form name="formu2" class="Formu2" method="post" id="formu2">
+
+            <!--Producto-->
+            <fieldset class="producto">
+                <legend>Producto</legend>
+                <label for="product">Selecciona un producto:</label>
+                <select id="product" name="producto" required>
+                    <option value ="" selected disabled>Selección producto</option>
+                    <option value="producto1" data-precio="100">Producto 1 - 100€</option>
+                    <option value="producto2" data-precio="150">Producto 2 - 150€</option>
+                    <option value="producto3" data-precio="200">Producto 3 - 200€</option>
+                </select>
+            </fieldset>
+
+            <!--Plazo-->
+            <fieldset class="plazo">
+                <legend>Plazo</legend>
+                <label for="plazo">Indica el plazo de entrega en dias:</label>
+                <input type="number" id="plazo" name="plazo" min="1" placeholder="Número de dias">
+            </fieldset>
+            
+            <!--Extras-->
+            <fieldset class="extras">
+                <legend>Extras</legend>
+                <p>Selecciona los extras que deseas añadir:</p>
+
+                <!--Extra 1-->
+                <label class="extra1">
+                    <input type="checkbox" id="extra_1" name="extra" value="extra1" data-precio="20">
+                    Embalaje especial (+20€)
+                </label><br>
+
+                <!--Extras 2-->
+                <label class="extra2">
+                    <input type="checkbox" id="extra_2" name="extra" value="extra2" data-precio="35">
+                    Garantía extendida (+35€)
+                </label><br>
+
+                <!--Extras 3-->
+                <label class="extra3">
+                <input type="checkbox" id="extra_3" name="extra" value="extra3" data-precio="50">
+                Instalación a domicilio (+50€)
+                </label>
+            </fieldset>
+
+            <!--Presupuesto-->
+            <fieldset class="presupuesto">
+                <legend>Presupuesto</legend>
+                <p>Total estimado segun sus elecciones: <strong id="presupuesto">0 €</strong></p>
+            </fieldset>
+
+            <!--Condicones y envio del presupuesto-->
+            <label class="condiciones">
+                <input type="checkbox" id="condiciones" required>
+                Acepto las condiciones de privacidad
+            </label>
+            
+            <br><br>
+
+            <button type="submit" id="enviarPresu">Enviar presupuesto</button>
+            <button type="reset" id="ResetFormu">Resetear formulario</button>
+
+        </form>
+
+    </main>
+    
+
+    <!--Footer-->
+    <footer>
+        
+        <!--Redes sociales-->
+        <div class="redes">
+            <h3>Follow us:</h3>
+
+            <ul class="listR">
+                <li><a href="#"><img src="./../assets/imagenes/logos/logoinstagram.avif" title="logo_insta" alt="logo_insta" width="740" height="740"></a></li>
+                <li><a href="#"><img src="./../assets/imagenes/logos/logofacebook.avif" title="logo_face" alt="logo_face" width="740" height="740"></a></li>
+                <li><a href="#"><img src="./../assets/imagenes/logos/logotwitterx.avif" title="logo_X" alt="logo_X" width="626" height="626"></a></li>
+            </ul>
+        </div>
+        
+         <!--Direccion-->
+        <div class="direccion">
+            <h3>Dirección:</h3>
+
+            <ul class="listD" >
+                <li>C. de Cavanilles, 35, Retiro, 28007 Madrid</li>
+                <li><a href="#">DeTodoUnPoco@gmail.com</a></li>
+            </ul> 
+        </div>
+        
+        <!--Aviso legal-->
+        <div class="avisos">
+            <h3>Aviso legal:</h3>
+
+            <ul class="listA">
+                <li>Politica de privacidad</li>
+                <li>Politica de cookies</li>
+                <li>Preferencia de cookies</li>
+                <li>Politica de uso</li>
+                <li>Informacion sobre la proteccion de datos</li>
+                <li>Terminos y condiciones de ventas</li>
+            </ul> 
+        </div>
+         
+    </footer>   
+    
+    <script src="./../js/script.js"></script>
+</body>
+ 
+</html>      
+    
+
+    
+        
+
+    
+
+
+  
+    
