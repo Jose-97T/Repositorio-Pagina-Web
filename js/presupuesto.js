@@ -1,60 +1,3 @@
-
-/*********************************************************** CARGA DE DATOS Json con Ayax (noticias) ***********************************************/
-
-document.addEventListener('DOMContentLoaded', () => {
-  const cajaJson = document.getElementById('cajaJson');
-  if (!cajaJson) return;
-
-  fetch('./../data/noticias.json')
-    .then(response => response.json())
-    .then(data => {
-      data.forEach(({ titulo, descripcion }) => {
-        cajaJson.innerHTML += `<p class="titulo"> <b>${titulo}</b>${descripcion}</p>`;
-      });
-    });
-});
-
-/*********************************************************** GALERIA DINAMICA DE TIPO LIGHTBOX ***********************************************/
-document.addEventListener('DOMContentLoaded', () => {
-  // Recorremos las imagenes
-const imagenes = document.querySelectorAll('#galeria_peliculas img, #galeria_juegos img, #galeria_series img');
-  imagenes.forEach(imagen => {
-    // Cuando se hace clic en una imagen
-    imagen.addEventListener('click', () => {
-      // Creamos un fondo oscuro
-      const fondo = document.createElement('div');
-      fondo.style.position = 'fixed';
-      fondo.style.top = '0';
-      fondo.style.left = '0';
-      fondo.style.width = '100%';
-      fondo.style.height = '100%';
-      fondo.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
-      fondo.style.display = 'flex';
-      fondo.style.justifyContent = 'center';
-      fondo.style.alignItems = 'center';
-      fondo.style.zIndex = '1000';
-
-      // Creamos una imagen grande
-      const imagenGrande = document.createElement('img');
-      imagenGrande.src = imagen.src;
-      imagenGrande.style.maxWidth = '90%';
-      imagenGrande.style.maxHeight = '90%';
-      imagenGrande.style.borderRadius = '10px';
-
-      // Añadimos la imagen al fondo
-      fondo.appendChild(imagenGrande);
-      document.body.appendChild(fondo);
-
-      // Si haces clic en el fondo, se cierra
-      fondo.addEventListener('click', () => {
-        fondo.remove();
-      });
-    });
-  });
-});
-
-
-
 /*********************************************************** VALIDACION DEL FORMULARIO 1 (Datos de Contacto) ***********************************************/
 /*VALIDACION PARA LOS DATOS DE CONTACTO:*/
 function validarFormulario(){ 
@@ -120,15 +63,13 @@ function validarFormulario(){
 
   document.getElementById('miFormulario').submit();
 
-}
+};
 
 
 
 /********************************************************* PRESUPUESTO DEL FORMULARIO 2 *******************************************/
 
 document.addEventListener('DOMContentLoaded', () => {
-  const formularioPresu = document.getElementById('formu2');
-  if (!formularioPresu) return;
 
   /*Seleccion del producto*/
   const producto = document.getElementById('product');
@@ -152,7 +93,6 @@ document.addEventListener('DOMContentLoaded', () => {
   /*Actualizacion de las opciones ingresadas por el usuario*/
   const Opciones = [producto , plazo, Extra1, Extra2, Extra3];
 
-  
 
   /*Funcion para realizar el calculo del presupuesto, teniendo en cuenta cualquier cambio*/
   Opciones.forEach(opcion =>{
@@ -203,81 +143,3 @@ document.addEventListener('DOMContentLoaded', () => {
     }); 
   }); 
 });
-
-/********************************************************* PAGINA DE CONTACTO **************************************************/ 
-
-document.addEventListener('DOMContentLoaded', () => {
-  
-  const mapa = document.getElementById('map');
-  if (!mapa) return;
-  
-  let empresaLat = 40.405520;
-  let empresaLng = -3.674125;
-  
-  let options={
-    enableHighAccuracy:true,
-    timeout: 5000,
-    maximumAge: 0
-  };
-
-
-  /*Comprobar que el dispositivo tenga disponibles la geolocalizacion*/
-  if (navigator.geolocation){
-      navigator.geolocation.getCurrentPosition(
-        success, 
-        error, 
-        options
-      );
-  }else{
-    alert('Los servicios de geolocalizacion no estan disponibles');
-  }
-
-  /*Si la tiene*/
-  function success(position){
-    
-    let latitude = position.coords.latitude;
-    let longitude = position.coords.longitude;
-    
-    let map = L.map('map', {
-      center:[latitude, longitude],
-      zoom:18
-    })
-
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: 'Mi openSteetMaps'}).addTo(map);
-
-    /*Calcular ruta*/
-    let ruta = L.Routing.control({
-      waypoints:[
-        L.latLng(latitude, longitude),
-        L.latLng(empresaLat, empresaLng),
-      ],
-
-      language:'es',
-
-    }).addTo(map);
-
-  }  
-
-  /*Si no la tiene*/
-  function error(){
-
-    let map = L.map('map').setView([empresaLat, empresaLng],18);
-
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: 'Mi openSteetMaps'}).addTo(map);
-
-    L.marker([empresaLat, empresaLng])
-    .addTo(map)
-    .bindPopup('Ubicación de la empresa')
-    .openPopup();
-
-  }
-
-});
-
-
-
-
-
-
-
-
