@@ -24,107 +24,103 @@
 
     <!--Main-->
     <main class="mainFormu">
-        <!--Formulario 1: datos del contacto-->
-        <h3>Datos de contacto</h3>
-        <form name="formu1" class="formu1" method="post" id="miFormulario">
-            
-            <div class="datos">
-            <!--Nombre-->
-            <label for="name">Nombre</label>
-            <input type="text" id="name" name="name" placeholder="Escribe tu nombre" pattern="[A-Z a-z]{3,15}" required>
+        <form name="formu1" class="formu1" method="post" id="formulario" action="#">
 
-            <!--Apellidos-->
-            <label for="surname">Apellidos</label>
-            <input type="text" id="surname" name="surname" placeholder="Escribe tus apellidos" pattern="[A-Z a-z]{3,40}" required>
+            <!--Formulario 1: datos del contacto-->
+            <section id="miFormulario">
 
-            <!--Email-->
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="Escribe tu correo" pattern="[A-Za-z0-40-_.,]+@[a-z0-40.-_,]+.[a-z]{2,5}" required>
+                <h3>Datos de contacto</h3>
+                <div class="datos">
+                    <!--Nombre-->
+                    <label for="name">Nombre</label>
+                    <input type="text" id="name" name="name" placeholder="Escribe tu nombre">
 
-            <!--Telefono-->
-            <label for="telefono">Teléfono</label>
-            <input type="tel" id="telefono" name="telefono" placeholder="Escribe tu telefono" pattern="[0-9]{9}" required>
-            </div>
+                    <!--Apellidos-->
+                    <label for="surname">Apellidos</label>
+                    <input type="text" id="surname" name="surname" placeholder="Escribe tus apellidos">
 
-            <!--Checkbox-->
-            <div class="checkB">
-                <label for="check">Politica de privacidad</label>
-                <input type="checkbox" id="check" name="check" required>
-            </div>
+                    <!--Email-->
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Escribe tu correo">
 
-            <!--Submit-->
-            <div class="envio">
-                <button type="button" id="enviar" name="enviar" onclick="validarFormulario()" value="Enviar">Enviar</button>
-            </div>
-            
-        </form>
+                    <!--Telefono-->
+                    <label for="telefono">Teléfono</label>
+                    <input type="tel" id="telefono" name="telefono" placeholder="Escribe tu telefono">
+                </div>
 
-        <!--Formulario 2: presupuesto-->
-        <h3>A continuacion calcularemos un presupuesto</h3>
-        <form name="formu2" class="Formu2" method="post" id="formu2">
+                <!--Checkbox-->
+                <div class="checkB">
+                    <label for="check">Politica de privacidad</label>
+                    <input type="checkbox" id="check" name="check">
+                </div>
 
-            <!--Producto-->
-            <fieldset class="producto">
-                <legend>Producto</legend>
-                <label for="product">Selecciona un producto:</label>
-                <select id="product" name="producto" required>
-                    <option value ="" selected disabled>Selección producto</option>
-                    <option value="producto1" data-precio="100">Producto 1 - 100€</option>
-                    <option value="producto2" data-precio="150">Producto 2 - 150€</option>
-                    <option value="producto3" data-precio="200">Producto 3 - 200€</option>
-                </select>
-            </fieldset>
+            </section>
 
-            <!--Plazo-->
-            <fieldset class="plazo">
-                <legend>Plazo</legend>
-                <label for="plazo">Indica el plazo de entrega en dias:</label>
-                <input type="number" id="plazo" name="plazo" min="1" placeholder="Número de dias">
-            </fieldset>
-            
-            <!--Extras-->
-            <fieldset class="extras">
-                <legend>Extras</legend>
-                <p>Selecciona los extras que deseas añadir:</p>
+            <!--Formulario 2: presupuesto-->
+            <section id="formu2" class="Formu2">
 
-                <!--Extra 1-->
-                <label class="extra1">
-                    <input type="checkbox" id="extra_1" name="extra" value="extra1" data-precio="20">
-                    Embalaje especial (+20€)
-                </label><br>
+                <h3>A continuacion calcularemos un presupuesto</h3>
+                <!--Producto-->
+                <fieldset class="producto">
+                    <legend>Producto</legend>
+                    <label for="product">Selecciona un producto:</label>
+                    <select id="product" name="producto">
+                        <option value ="" selected disabled>Selección producto</option>
+                        <option value="producto1" data-precio="100">Producto 1 - 100€</option>
+                        <option value="producto2" data-precio="150">Producto 2 - 150€</option>
+                        <option value="producto3" data-precio="200">Producto 3 - 200€</option>
+                    </select>
+                </fieldset>
 
-                <!--Extras 2-->
-                <label class="extra2">
-                    <input type="checkbox" id="extra_2" name="extra" value="extra2" data-precio="35">
-                    Garantía extendida (+35€)
-                </label><br>
+                <!--Plazo-->
+                <fieldset class="plazo">
+                    <legend>Plazo</legend>
+                    <label for="plazo">Indica el plazo de entrega en dias:</label>
+                    <input type="number" id="plazo" name="plazo" min="1" placeholder="Número de dias">
+                </fieldset>
+                
+                <!--Extras-->
+                <fieldset class="extras">
+                    <legend>Extras</legend>
+                    <p>Selecciona los extras que deseas añadir:</p>
 
-                <!--Extras 3-->
-                <label class="extra3">
-                <input type="checkbox" id="extra_3" name="extra" value="extra3" data-precio="50">
-                Instalación a domicilio (+50€)
+                    <!--Extra 1-->
+                    <label class="extra1">
+                        <input type="checkbox" id="extra_1" name="extra" value="extra1" data-precio="20">
+                        Embalaje especial (+20€)
+                    </label>
+
+                    <!--Extras 2-->
+                    <label class="extra2">
+                        <input type="checkbox" id="extra_2" name="extra" value="extra2" data-precio="35">
+                        Garantía extendida (+35€)
+                    </label>
+
+                    <!--Extras 3-->
+                    <label class="extra3">
+                    <input type="checkbox" id="extra_3" name="extra" value="extra3" data-precio="50">
+                    Instalación a domicilio (+50€)
+                    </label>
+                </fieldset>
+
+                <!--Presupuesto-->
+                <fieldset class="presupuesto">
+                    <legend>Presupuesto</legend>
+                    <p>Total estimado segun sus elecciones: <strong id="presupuesto">0 €</strong></p>
+                </fieldset>
+
+                <!--Condicones y envio del presupuesto-->
+                <label class="condiciones">
+                    <input type="checkbox" id="condiciones">
+                    Acepto las condiciones de privacidad
                 </label>
-            </fieldset>
 
-            <!--Presupuesto-->
-            <fieldset class="presupuesto">
-                <legend>Presupuesto</legend>
-                <p>Total estimado segun sus elecciones: <strong id="presupuesto">0 €</strong></p>
-            </fieldset>
+                <button type="button" id="enviar" onclick="validarTodo()">Enviar formulario</button>
+                <button type="button" id="ResetFormu" onclick="resetearFormulario()">Resetear formulario</button>
 
-            <!--Condicones y envio del presupuesto-->
-            <label class="condiciones">
-                <input type="checkbox" id="condiciones" required>
-                Acepto las condiciones de privacidad
-            </label>
-            
-            <br><br>
-
-            <button type="submit" id="enviarPresu">Enviar presupuesto</button>
-            <button type="reset" id="ResetFormu">Resetear formulario</button>
+            </section>
 
         </form>
-
     </main>
     
 

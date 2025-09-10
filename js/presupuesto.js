@@ -6,9 +6,10 @@ function validarFormulario(){
   const apellidos = document.getElementById('surname').value;
   const email = document.getElementById('email').value;
   const telefono = document.getElementById('telefono').value;
+  const politica = document.getElementById('check').checked;
 
   //Si algunos de los campos estuvieran vacios
-  if(nombre || apellidos || email || telefono === ""){
+  if(nombre === "" || apellidos === "" || email === "" || telefono === ""){
     alert("Por favor, rellene los campos que faltan");
     return false;
   }
@@ -61,85 +62,121 @@ function validarFormulario(){
     return false;
   }
 
-  document.getElementById('miFormulario').submit();
+  /*VALIDACION PARA politica*/
+  //Verifica si el checkbox esta marcado
+  if (!politica) {
+    alert("Debes aceptar las politica de privacidad.");
+    return false;
+  }
 
 };
 
 
-
 /********************************************************* PRESUPUESTO DEL FORMULARIO 2 *******************************************/
 
-document.addEventListener('DOMContentLoaded', () => {
+/*Seleccion del producto*/
+const producto = document.getElementById('product');
 
-  /*Seleccion del producto*/
-  const producto = document.getElementById('product');
+/*Seleccion de plazo*/
+const plazo = document.getElementById('plazo');
 
-  /*Seleccion de plazo*/
-  const plazo = document.getElementById('plazo');
+/*Seleccion de los extras*/
+/*extra1*/
+const Extra1 = document.getElementById('extra_1');
 
-  /*Seleccion de los extras*/
-  /*extra1*/
-  const Extra1 = document.getElementById('extra_1');
+/*extra2*/
+const Extra2 = document.getElementById('extra_2');
 
-  /*extra2*/
-  const Extra2 = document.getElementById('extra_2');
+/*extra3*/
+const Extra3 = document.getElementById('extra_3');
 
-  /*extra3*/
-  const Extra3 = document.getElementById('extra_3');
+/*Presupuesto*/
+const presupuesto = document.getElementById('presupuesto');
 
-  /*Presupuesto*/
-  const presupuesto = document.getElementById('presupuesto');
-
-  /*Actualizacion de las opciones ingresadas por el usuario*/
-  const Opciones = [producto , plazo, Extra1, Extra2, Extra3];
+/*Actualizacion de las opciones ingresadas por el usuario*/
+const Opciones = [producto , plazo, Extra1, Extra2, Extra3];
 
 
-  /*Funcion para realizar el calculo del presupuesto, teniendo en cuenta cualquier cambio*/
-  Opciones.forEach(opcion =>{
-    opcion.addEventListener('change', function() {
+/*Funcion para realizar el calculo del presupuesto, teniendo en cuenta cualquier cambio*/
+Opciones.forEach(opcion =>{
+  opcion.addEventListener('change', function() {
 
-      const opciones = producto.options[producto.selectedIndex];
-      const precio1 = parseInt(opciones.getAttribute('data-precio'));
+    const opciones = producto.options[producto.selectedIndex];
+    const precio1 = parseInt(opciones.getAttribute('data-precio'));
   
-      /*Precio de los extras a obtener*/
-      let precioExtra1 = 0;
-      let precioExtra2 = 0;
-      let precioExtra3 = 0;
-      /*extra1*/
-      if(Extra1.checked){
-        precioExtra1 = parseInt(Extra1.getAttribute('data-precio')) || 0;
+    /*Precio de los extras a obtener*/
+    let precioExtra1 = 0;
+    let precioExtra2 = 0;
+    let precioExtra3 = 0;
+    /*extra1*/
+    if(Extra1.checked){
+      precioExtra1 = parseInt(Extra1.getAttribute('data-precio')) || 0;
+    }
+    /*extras2*/
+    if(Extra2.checked){
+      precioExtra2 = parseInt(Extra2.getAttribute('data-precio')) || 0;
+    }
+    /*extra3*/
+    if(Extra3.checked){
+      precioExtra3 = parseInt(Extra3.getAttribute('data-precio')) || 0;
+    }
+
+    const precioTotal = precio1 + precioExtra1 + precioExtra2 + precioExtra3;
+
+    /*Aplicar el descuento sobre el precioTotal y obtener precioFinal*/
+    const plazoDias = parseInt(plazo.value) || 0;
+    let precioFinal = 0 + "€";
+      if(plazoDias == 0){
+        precioFinal = precioTotal;
+      }else if(plazoDias <= 15){
+        const descuento = 10;
+        precioFinal = precioTotal - (precioTotal * descuento/100);
+      }else{
+        const masDescuento = 20;
+        precioFinal = precioTotal - (precioTotal * masDescuento/100);
       }
-      /*extras2*/
-      if(Extra2.checked){
-        precioExtra2 = parseInt(Extra2.getAttribute('data-precio')) || 0;
-      }
-      /*extra3*/
-      if(Extra3.checked){
-        precioExtra3 = parseInt(Extra3.getAttribute('data-precio')) || 0;
-      }
 
-      const precioTotal = precio1 + precioExtra1 + precioExtra2 + precioExtra3;
+    presupuesto.innerHTML = precioFinal + " " + "€";
 
-      /*Aplicar el descuento sobre el precioTotal y obtener precioFinal*/
-      const plazoDias = parseInt(plazo.value) || 0;
-      let precioFinal = 0 + "€";
-        if(plazoDias == 0){
-          precioFinal = precioTotal;
-        }else if(plazoDias <= 15){
-            const descuento = 10;
-            precioFinal = precioTotal - (precioTotal * descuento/100);
-          }else{
-            const masDescuento = 20;
-            precioFinal = precioTotal - (precioTotal * masDescuento/100);
-            }
-         
-      presupuesto.innerHTML = precioFinal + " " + "€";
-
-      const formulario = document.getElementById('formu2');
-      formulario.addEventListener('reset', () => {
-        presupuesto.innerHTML = '0 €';
-      });
-
-    }); 
   }); 
-});
+}); 
+
+/*Validacion Formulario 2 (presupuesto)*/
+function validarPresupuesto() {
+  const producto = document.getElementById('product').value;
+  const plazo = document.getElementById('plazo').value;
+  const condiciones = document.getElementById('condiciones').checked;
+
+  if (!producto) {
+    alert("Selecciona un producto.");
+    return false;
+  }
+
+  if (plazo === "") {
+    alert("Indica un plazo válido en días.");
+    return false;
+  }
+
+  if (!condiciones) {
+    alert("Debes aceptar las condiciones de privacidad.");
+    return false;
+  }
+}
+
+/******************************************************************** ENVIO Y RESETEO DEL FORMULARIO ******************************************************/
+
+/*Verificar validacion del formulario y enviarlo*/
+function validarTodo() {
+  const contactoValido = validarFormulario();
+  const presupuestoValido = validarPresupuesto();
+
+  if (contactoValido && presupuestoValido) {
+    document.getElementById('formulario').submit();
+  }
+}
+
+/*Reseteo del formulario*/
+function resetearFormulario(){
+  document.getElementById('formulario').reset();
+  document.getElementById('presupuesto').innerHTML = '0 €';
+}

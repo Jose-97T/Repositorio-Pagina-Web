@@ -235,7 +235,7 @@ img{
 
 
 .mainFormu{
-    height:100vh;
+    height:auto;
     width:90%;
     margin:50px auto;
     padding:20px;
@@ -247,14 +247,15 @@ img{
     font-family: 'Times New Roman', Times, serif;
 }
 
+
+/*Formulario datos de contacto*/
 .formu1{
-    gap:5%;
-    margin:8% auto;
-    width:80%;
+    margin:2% auto;
+    width:100%;
     height:auto;
     border: 2px solid #3B5DBD;
-    box-shadow: 2px 2px 1px 1px #160DB0;
-    margin-top:50px;
+    box-shadow: 2px 2px 6px 4px #160DB0;
+    padding:2%;
 }
 
 .datos{
@@ -263,9 +264,8 @@ img{
     gap:2%;
     width:80%;
     height:40%;
-    margin:5% auto;
+    margin:3% auto;
     justify-content: center;
-
 }
 
 .datos input{
@@ -275,15 +275,10 @@ img{
     align-self: center;
 }
 
-.envio button{
-    width:10%;
-    height:auto;
-    margin:30px auto;
-    font-size:0.55em;
-}
 
+/*Formulario presupuesto*/
 .Formu2{
-    margin-top:30px;
+    margin-top:50px;
 }
 
 .Formu2 fieldset{
@@ -292,6 +287,17 @@ img{
     height: auto;
 }
 
+.producto, .plazo, .extras, .presupuesto{
+    padding:3px;
+}
+
+.extras p{
+    margin-bottom:20px;
+}
+
+.extras label{
+    padding:15px;
+}
 
 .producto select , .plazo input , .formu2 button{
     width:200px;
@@ -301,10 +307,15 @@ img{
     font-size:20px;
 }
 
-#enviarPresu, #ResetFormu{
+ #enviar, #ResetFormu{
+    display:flex;
+    flex-direction:column;
+}
+
+#enviar, #ResetFormu{
     width:10%;
     height:auto;
-    margin:30px auto;
+    margin:20px auto;
     font-size:0.55em;
 }
 
