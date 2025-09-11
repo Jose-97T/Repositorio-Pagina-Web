@@ -35,34 +35,35 @@ body{
     height: auto;
 }
 
-nav{
-    display:flex;
-    flex-direction: row;
-    position: fixed;
-    z-index:1000;
-    right:0;
-    left: 0;
-    top: 0;
-    gap:5%;
-    width:50%;
-    height:75px;
-    margin:0 auto;
-    background-image:linear-gradient(to top, wheat, white);
-    justify-content: center;
-    margin-top:1%;
-    border: 2px solid #B95752;
+
+nav {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1000;
+  right: 0;
+  left:10%;
+  top: 0;
+  width:80%; 
+  height: 75px;
+  background-image: linear-gradient(to top, wheat, white);
+  border: 2px solid #B95752;
+  padding: 0 10px;
+  margin-top:20px;
 }
 
-nav a{
-    margin: 0 auto;
-    color: #C09870;
-    text-decoration: none;
-    font-size:2em;
-    align-items: center;
-    text-align: center;
-    position: relative;
-    top:20%;
+nav a {
+  color: #C09870;
+  text-decoration: none;
+  font-size: 2em; 
+  text-align: center;
+  padding: 10px;
+  flex: 1 1 auto; 
+  min-width: 100px; 
 }
+
 
 nav a:hover{
     color:#160DB0;
@@ -81,10 +82,10 @@ footer{
     background-image:linear-gradient(to top, #FAF5E9 , #F7EED9);
     justify-self: center;
     justify-content: center;
-    font-size:120%;
-    margin:35px auto;
-    width:70%;
-    height:80%;
+    font-size:1.2em;
+    margin:30px auto;
+    width:90%;
+    height:auto;
 }
 
 footer li{
@@ -119,9 +120,11 @@ footer li{
     margin:0 auto;
 }
 
+
 /*Media quares*/
-@media (max-width: 991px){
-    header, nav, body, footer{
+
+@media (min-width: 400px) and (max-width: 900px){
+    header, nav, nav a, body, footer{
         width:90%;
         height: auto;
         margin:0 auto;
@@ -131,27 +134,14 @@ footer li{
     }
 }
 
-@media (max-width: 700px){
-    header, nav, body, footer{
-        width:90%;
-        height: auto;
-        margin:0 auto;
-    }
-    header{
-        align-items: center;
-    }
+@media (max-width: 600px) {
+  nav a {
+    font-size: 14px;
+    padding: 8px;
+    display: block;
+  }
 }
 
-@media (max-width:580px){
-    header, nav, main, footer{
-        width:90%;
-        height: auto;
-        margin:0 auto;
-    }
-    header{
-        align-items: center;
-    }
-}
 
 
 /********************************************************************* ESTILOS INDEX ************************************************************************/
@@ -269,9 +259,10 @@ img{
 }
 
 .datos input{
+    width:60%;
+    height:40%;
     text-align: center;
     justify-content: center;
-    height:40%;
     align-self: center;
 }
 
